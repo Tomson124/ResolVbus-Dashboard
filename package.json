@@ -1,0 +1,13 @@
+{
+  "name": "VBus-Control",
+  "version": "0.0.1",
+  "description": "AngularJS Dashboard for showing Resol-Vbus data",
+  "main": "",
+  "homepage": "",
+  "repository": "",
+  "bugs": "",
+  "author": "Tomson124",
+  "license": "",
+  "dependencies": {
+  }
+}
