@@ -9,5 +9,6 @@
   "author": "Tomson124",
   "license": "",
   "dependencies": {
+    "resol-vbus": "^0.16.0"
   }
 }
