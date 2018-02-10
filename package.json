@@ -28,7 +28,6 @@
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
-    "resol-vbus": "^0.17.0",
     "@angular/animations": "~5.1.0",
     "@angular/common": "~5.1.0",
     "@angular/compiler": "~5.1.0",
@@ -44,11 +43,14 @@
     "bootstrap": "4.0.0-beta.2",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",
+    "echarts": "^4.0.2",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
     "nebular-icons": "1.0.6",
+    "ngx-echarts": "2.0.0",
     "normalize.css": "7.0.0",
     "pace-js": "1.0.2",
+    "resol-vbus": "^0.17.0",
     "roboto-fontface": "0.8.0",
     "rxjs": "5.5.5",
     "typeface-exo": "0.0.22",
