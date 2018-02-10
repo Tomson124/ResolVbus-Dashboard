@@ -54,6 +54,12 @@
         font-weight: nb-theme(font-weight-normal);
       }
     }
+
+    .version {
+      font-size: 1rem;
+      font-weight: nb-theme(font-weight-normal);
+      white-space: nowrap;
+    }
   }
 
   .toggle-layout /deep/ a {
