@@ -28,7 +28,7 @@
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
-    "resol-vbus": "^0.16.0",
+    "resol-vbus": "^0.17.0",
     "@angular/animations": "~5.1.0",
     "@angular/common": "~5.1.0",
     "@angular/compiler": "~5.1.0",
