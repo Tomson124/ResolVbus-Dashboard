@@ -4,11 +4,14 @@ var fs = require('fs');
 var os = require('os');
 var path = require('path');
 
+var express = require('express');
 var _ = require('lodash');
 var Q = require('q');
 var winston = require('winston');
 
 var vbus = require('resol-vbus');
+
+var config = require('./config');
 
 var logger = new winston.Logger({
 	transports: [
@@ -51,25 +54,39 @@ var main = function() {
 	return Q.fcall(function() {
 		logger.debug('Starting server...');
 
+		var app = express();
+
+		app.get('/api/v1/live-data', function(req, res) {
+			Q.fcall(function() {
+				var data = generateJsonData();
+
+				res.status(200).type('application/json').end(data);
+			}).fail(function(err) {
+				logger.error(err);
+				res.status(500).type('text/plain').end(err.toString());
+			});
+		});
+
+		return new Promise(function(resolve, reject) {
+			app.listen(config.httpPort, function(err) {
+				if (err) {
+					reject(err);
+				} else {
+					resolve();
+				}
+			});
+		});
 	}).then(function() {
 		logger.debug('Connect to VBus data source...');
 
 		ctx.headerSet = new vbus.HeaderSet();
 
 		ctx.hsc = new vbus.HeaderSetConsolidator({
-			interval: 10000, //in miliseconds
+			interval: config.loggingInterval,
 		});
 
 		ctx.connection = new vbus.SerialConnection({
             path: '/dev/ttyACM0'
-        });
-
-        var connectPromise = ctx.connection.connect();
-
-        connectPromise.then(function() {
-            console.log('Connected!');
-        }, function() {
-            console.log('Connection failed');
         });
 
 		ctx.connection.on('packet', function(packet) {
@@ -83,13 +100,32 @@ var main = function() {
 
 				var data = generateJsonData();
 
-				return Q.npost(fs, 'writeFile', [ path.resolve(__dirname, 'live-data.json'), data ]);
+				return Q.npost(fs, 'writeFile', [ config.loggingFilename, data ]);
 			}).done();
 		});
 
 		return ctx.connection.connect();
+	}).then(function() {
+		var ifaces = os.networkInterfaces();
+
+		logger.info('Ready to serve from the following URLs:');
+		_.forEach(ifaces, function(ifaceConfigs, ifaceName) {
+			_.forEach(ifaceConfigs, function(ifaceConfig) {
+				if (ifaceConfig.family === 'IPv4') {
+					logger.info('    - http://' + ifaceConfig.address + ':' + config.httpPort + '/api/v1/live-data' + (ifaceConfig.internal ? ' (internal)' : ''));
+				}
+			});
+		});
+
+		ctx.hsc.startTimer();
+
+		return new Promise(function(resolve, reject) {
+			// nop, just run forever
+		});
 	});
 };
+
+
 
 if (require.main === module) {
 	Q.fcall(function() {

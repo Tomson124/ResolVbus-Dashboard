@@ -1,5 +1,7 @@
 var vbus = require('resol-vbus');
 
+var _ = require('lodash');
+
 var connection = new vbus.SerialConnection({
         path: '/dev/ttyACM0'
 });
@@ -21,7 +23,15 @@ var spec = vbus.Specification.getDefaultSpecification();
 
 var onPacket = function(packet) {
         console.log('Packet received: ' + packet.getId());
-        var packetFields = spec.getPacketFieldsForHeaders([ packet
-]);
-        console.log(packetFields);
+        var packetFields = spec.getPacketFieldsForHeaders([packet]);
+        
+        var data = _.map(packetFields, function(pf) {
+                return {
+                        id: pf.id,
+                        name: pf.name,
+                        rawValue: pf.rawValue,
+                };
+        });
+        
+        return JSON.stringify(data, null, 4);
 };
