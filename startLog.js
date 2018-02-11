@@ -52,31 +52,6 @@ var main = function() {
 	};
 
 	return Q.fcall(function() {
-		logger.debug('Starting server...');
-
-		var app = express();
-
-		app.get('/api/v1/live-data', function(req, res) {
-			Q.fcall(function() {
-				var data = generateJsonData();
-
-				res.status(200).type('application/json').end(data);
-			}).fail(function(err) {
-				logger.error(err);
-				res.status(500).type('text/plain').end(err.toString());
-			});
-		});
-
-		return new Promise(function(resolve, reject) {
-			app.listen(config.httpPort, function(err) {
-				if (err) {
-					reject(err);
-				} else {
-					resolve();
-				}
-			});
-		});
-	}).then(function() {
 		logger.debug('Connect to VBus data source...');
 
 		ctx.headerSet = new vbus.HeaderSet();
@@ -106,16 +81,6 @@ var main = function() {
 
 		return ctx.connection.connect();
 	}).then(function() {
-		var ifaces = os.networkInterfaces();
-
-		logger.info('Ready to serve from the following URLs:');
-		_.forEach(ifaces, function(ifaceConfigs, ifaceName) {
-			_.forEach(ifaceConfigs, function(ifaceConfig) {
-				if (ifaceConfig.family === 'IPv4') {
-					logger.info('    - http://' + ifaceConfig.address + ':' + config.httpPort + '/api/v1/live-data' + (ifaceConfig.internal ? ' (internal)' : ''));
-				}
-			});
-		});
 
 		ctx.hsc.startTimer();
 
