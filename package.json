@@ -46,18 +46,19 @@
     "echarts": "^4.0.2",
     "intl": "1.2.5",
     "ionicons": "2.0.1",
+    "lodash": "^3.7.0",
+    "lowdb": "^1.0.0",
     "nebular-icons": "1.0.6",
     "ngx-echarts": "2.0.0",
     "normalize.css": "7.0.0",
     "pace-js": "1.0.2",
+    "q": "^1.2.1",
     "resol-vbus": "^0.17.0",
     "roboto-fontface": "0.8.0",
     "rxjs": "5.5.5",
     "typeface-exo": "0.0.22",
-    "zone.js": "0.8.18",
-    "lodash": "^3.7.0",
-    "q": "^1.2.1",
-    "winston": "^1.0.0"
+    "winston": "^1.0.0",
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.5",
