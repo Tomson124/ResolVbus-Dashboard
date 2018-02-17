@@ -1,18 +1,8 @@
 'use strict';
 
-
-
 var path = require('path');
 
-
-
 var config = {
-
-	/**
-	 * The port number for the HTTP server to listen to.
-	 * @type {Number}
-	 */
-	httpPort: 3333,
 
 	/**
 	 * The inteval in milliseconds between two writes of the logging file.
@@ -21,12 +11,10 @@ var config = {
 	loggingInterval: 10000,
 
 	/**
-	 * The filename of the logging file.
+	 * Locale for Moment.js which shows time and date.
 	 * @type {String}
 	 */
-	loggingFilename: path.resolve(__dirname, 'live-data.json'),
+	locale: 'de',
 };
-
-
 
 module.exports = config;
