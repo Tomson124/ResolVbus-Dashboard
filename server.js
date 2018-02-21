@@ -8,6 +8,11 @@ const FileSync = require('lowdb/adapters/FileSync')
 const app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // Create database instance and start server
 const adapter = new FileSync('database/solar.json')
