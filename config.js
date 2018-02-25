@@ -15,6 +15,12 @@ var config = {
 	 * @type {String}
 	 */
 	locale: 'de',
+
+	/**
+	 * Path to the to the connected USB-VBus Adapter
+	 * @type {String}
+	 */
+	usbConnection: '/dev/ttyACM0',
 };
 
 module.exports = config;

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import * as $ from 'jquery';
+
+const config = require('./../../../../../config');
 
 @Component({
   selector: 'water-temp',
@@ -6,5 +9,31 @@ import { Component } from '@angular/core';
   templateUrl: './water.component.html',
 })
 
-export class WaterComponent {
+export class WaterComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+
+    const elTemp1 = document.getElementById('tempWater');
+    const elTime = document.getElementById('timeWater');
+
+    let tempValue;
+    let timestamp;
+    let temp;
+
+    let logging = function() {
+      let json = $.getJSON('http://localhost:3000/latestTime/tempWater', function(data) {
+        tempValue = data['rawValue'];
+        timestamp = data['time'];
+        temp = tempValue.toFixed(1).toString().replace('.', ',');
+      }).done(function() {
+        elTemp1.innerHTML = temp + '&deg;C';
+        elTime.innerHTML = timestamp + ' ' + 'Uhr';
+      });
+    }
+
+    logging();
+
+    setInterval(function() {
+      logging();
+    }, config.loggingInterval + 1000);
+  }
 }

@@ -11,15 +11,15 @@ const config = require('./../../../../../config');
 export class SolarComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
-    let elTemp1 = document.getElementById('temp1');
-    let elTime = document.getElementById('time');
+    const elTemp1 = document.getElementById('tempSolar');
+    const elTime = document.getElementById('timeSolar');
 
     let tempValue;
     let timestamp;
     let temp;
 
     let logging = function() {
-      let json = $.getJSON('http://localhost:3000/latestTime/temp1', function(data) {
+      let json = $.getJSON('http://localhost:3000/latestTime/tempSolar', function(data) {
         tempValue = data['rawValue'];
         timestamp = data['time'];
         temp = tempValue.toFixed(1).toString().replace('.', ',');
@@ -33,6 +33,6 @@ export class SolarComponent implements AfterViewInit {
 
     setInterval(function() {
       logging();
-    }, config.loggingInterval + 2000);
+    }, config.loggingInterval + 1000);
   }
 }

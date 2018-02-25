@@ -11,14 +11,14 @@ import { TempChartCodeComponent } from './temp-chart/temp-chart-code.component';
 @NgModule({
   imports: [
     ThemeModule,
-    NgxEchartsModule
+    NgxEchartsModule,
   ],
   declarations: [
     DashboardComponent,
     SolarComponent,
     WaterComponent,
     TempChartComponent,
-    TempChartCodeComponent
+    TempChartCodeComponent,
   ],
 })
 export class DashboardModule { }

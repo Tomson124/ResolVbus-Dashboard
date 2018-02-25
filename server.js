@@ -27,16 +27,26 @@ db._.mixin({
 
     // Routes
     // GET /posts/:id
-    app.get('/latestTime/:temp1', (req, res) => {
+    app.get('/latestTime/:temps', (req, res) => {
+
+      if(req.params.temps === 'tempSolar') {
         db.read();
-        const test = db.get('temps')
+        const temps = db.get('temps')
           .latest()
           .get('data')
-          .find({name: "Temperature sensor 1"})
+          .find({name: 'Temperature sensor 1'})
           .value()
-
-      res.send(test)
-      console.log(req.params.id + ' - ' + test);
+          res.send(temps);
+      }
+      if (req.params.temps === 'tempWater') {
+        db.read();
+        const temps = db.get('temps')
+          .latest()
+          .get('data')
+          .find({name: 'Temperature sensor 2'})
+          .value()
+        res.send(temps);
+      }
     })
 
     // POST /posts

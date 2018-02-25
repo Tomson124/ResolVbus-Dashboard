@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+const pjson = require('./../../../../../package.json');
 
 @Component({
   selector: 'ngx-header',
@@ -10,7 +11,6 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-
 
   @Input() position = 'normal';
 
@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    const elVersion = document.getElementById('ver');
+    elVersion.innerHTML = 'v' + pjson.version;
     this.userService.getUsers()
       .subscribe((users: any) => this.user = users.stefan);
   }
