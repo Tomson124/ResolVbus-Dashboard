@@ -18,8 +18,10 @@ export class SolarComponent implements AfterViewInit {
     let timestamp;
     let temp;
 
+    const url = window.location.hostname;
+
     let logging = function() {
-      let json = $.getJSON('http://localhost:3000/latestTime/tempSolar', function(data) {
+      let json = $.getJSON('http://' + url + ':3000/latestTime/tempSolar', function(data) {
         tempValue = data['rawValue'];
         timestamp = data['time'];
         temp = tempValue.toFixed(1).toString().replace('.', ',');
