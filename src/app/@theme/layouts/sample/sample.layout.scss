@@ -48,9 +48,13 @@
   }
 
   nb-sidebar.menu-sidebar {
+    $sidebar-width: 14rem;
+
+    width: $sidebar-width;
 
     /deep/ .main-container {
       border-top-right-radius: nb-theme(radius);
+      position: relative;
     }
 
     /deep/ nb-sidebar-header {
@@ -84,6 +88,7 @@
     }
 
     &.compacted {
+      width: 3.5em !important;
 
       /deep/ nb-sidebar-header {
         padding-left: 0;
