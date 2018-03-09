@@ -1,17 +1,19 @@
 <nb-card>
-    <nb-card-header>Solarpanel</nb-card-header>
-    <nb-card-body>
-        <div class="info">
-            <div class="icon">
-                <i class="ion-ios-sunny"></i>
-            </div>
-            <div class="temperature">
-                <span id="tempSolar">20&deg;C</span>
-            </div>
-            <div class="timestamp">
-                <span id="timeSolar">14:00 Uhr</span>
-            </div>
-        </div>
+    <nb-card-header class="icon">
+        <i class="material-icons">wb_sunny</i>
+    </nb-card-header>
+    <nb-card-body class="info">
+        <p class="temperature-title">Solaranlage</p>
+        <h3 id="tempSolar">
+            20
+            <small>&deg;C</small>
+        </h3>
     </nb-card-body>
+    <nb-card-footer>
+        <div class="timestamp">
+            <i class="material-icons">access_time</i>
+            <span id="timeSolar">14:00 Uhr</span>
+        </div>
+    </nb-card-footer>
 </nb-card>
 

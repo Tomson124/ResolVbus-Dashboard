@@ -6,6 +6,27 @@
 
   nb-card {
     background-image: nb-theme(radial-gradient);
+    display: inline-block;
+    width: 100%;
+  }
+
+  nb-card-header.icon {
+    margin: -20px 15px 0;
+    border-radius: 3px;
+    padding: 2.3rem 0;
+    background: linear-gradient(60deg, #ef5350, #e53935);
+    box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+    text-align: center;
+    width: 7.5rem;
+    height: 7.5rem;
+    float: left;
+    border: none;
+
+    i {
+      font-size: 4rem;
+      line-height: 3rem;
+      color: #ffffff;
+    }
   }
 
   nb-card-body {
@@ -14,18 +35,23 @@
     color: nb-theme(color-fg);
   }
 
-  .info {
-    display: flex;
-    justify-content: space-around;
+  nb-card-footer {
+    display: block;
+    margin: 0 1rem;
+    border-top: 1px solid #eeeeee;
+    padding: 0.5rem 1rem 1rem 1rem;
+  }
 
-    .temperature {
-      font-size: 5rem;
-      font-weight: nb-theme(font-weight-bolder);
-      font-family: nb-theme(font-secondary);
-      color: nb-theme(color-fg-heading);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+  .info {
+    text-align: right;
+    display: block;
+
+    .temperature-title {
+      font-family: nb-theme(font-main);
+      font-weight: nb-theme(font-weight-normal);
+      color: #777777;
+      font-size: 1.125rem;
+      margin-bottom: 0;
     }
 
     .icon {
@@ -34,14 +60,32 @@
       color: nb-theme(color-success);
     }
 
-    .timestamp {
+    h3 {
+      font-size: 3.5rem;
+      font-weight: nb-theme(font-weight-normal);
       font-family: nb-theme(font-main);
-      font-size: 1.25rem;
-      line-height: 1.25rem;
-      font-weight: nb-theme(font-weight-light);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      margin: 0;
+
+      small {
+        font-weight: nb-theme(font-weight-normal);
+        font-size: 80%;
+        line-height: 1;
+        margin-left: -0.7rem;
+      }
+    }
+  }
+
+  .timestamp {
+    font-family: nb-theme(font-main);
+    color: #777777;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    font-weight: nb-theme(font-weight-normal);
+
+    .material-icons {
+      font-size: 1.4rem;
+      top: 5px;
+      position: relative;
     }
   }
 

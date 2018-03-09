@@ -26,7 +26,7 @@ export class SolarComponent implements AfterViewInit {
         timestamp = data['time'];
         temp = tempValue.toFixed(1).toString().replace('.', ',');
       }).done(function() {
-        elTemp1.innerHTML = temp + '&deg;C';
+        elTemp1.innerHTML = temp + '<small>&deg;C</small>';
         elTime.innerHTML = timestamp + ' ' + 'Uhr';
       });
     }

@@ -8,7 +8,7 @@
  @import '~@nebular/theme/styles/core/mixins';
  
  $theme: (
-   font-main: unquote('"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'),
+   font-main: unquote('"Roboto", "Helvetica", "Arial", sans-serif;'),
    font-secondary: font-main,
  
    font-weight-thin: 200,
@@ -27,7 +27,7 @@
    font-size-sm: 0.875rem,
    font-size-xs: 0.75rem,
  
-   radius: 0.375rem,
+   radius: 0.3rem,
    padding: 1.25rem,
    margin: 1.5rem,
    line-height: 1.25,
@@ -91,7 +91,7 @@
    card-height-large: 576px,
    card-height-xlarge: 696px,
    card-height-xxlarge: 816px,
-   card-shadow: shadow,
+   card-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14),
    card-border-radius: radius,
    card-padding: padding,
    card-margin: margin,
@@ -130,7 +130,7 @@
    layout-font-size: font-size,
    layout-line-height: line-height,
    layout-fg: color-fg,
-   layout-bg: #ebeff5,
+   layout-bg: #e5e5e5,
    layout-min-height: 100vh,
    layout-content-width: 900px,
    layout-window-mode-min-width: 300px,
@@ -147,7 +147,7 @@
    sidebar-fg: color-fg-heading,
    sidebar-bg: color-bg,
    sidebar-height: 100vh,
-   sidebar-width: 16rem,
+   sidebar-width: 14rem,
    sidebar-width-compact: 3.5rem,
    sidebar-padding: padding,
    sidebar-header-height: 3.5rem,
@@ -183,7 +183,7 @@
    menu-group-padding: 1rem 1.25rem,
    menu-item-padding: 0.675rem 1rem 0.675rem 0.75rem,
    menu-item-separator: separator,
-   menu-icon-font-size: 2.5rem,
+   menu-icon-font-size: 2rem,
    menu-icon-margin: 0 0.5rem 0 0,
    menu-icon-color: color-fg,
    menu-icon-active-color: color-fg-heading,
