@@ -8,7 +8,7 @@
   }
 
   nb-layout-column.main-content {
-    padding: 3rem 2.25rem 0.75rem !important;
+    padding: 1.5rem 1.5rem 0.75rem !important;
   }
 
   nb-layout-header {
@@ -51,12 +51,85 @@
     }
   }
 
+  /deep/ nb-card.temps {
+    margin: 1.5em 0;
+  }
+
+  /deep/ .menu-items {
+    overflow: initial;
+    
+    li {
+      border: none !important;
+    }
+  }
+
+  /deep/ .menu-item {
+    font-family: nb-theme(font-main);
+    font-weight: nb-theme(font-weight-normal) !important;
+
+    a {
+      margin: 0.75em 1em;
+      border-radius: 3px;
+      color: #777777;
+      transition: all 300ms linear;
+
+      &:hover {
+        background: rgba(200, 200, 200, 0.4);
+        font-weight: nb-theme(font-weight-normal);
+        color: #777777;
+
+        i {
+          color: #777777;
+        }
+      }
+
+      &.active {
+        background: linear-gradient(60deg, #ab47bc, #8e24aa);
+        box-shadow: 0 12px 20px -10px rgba(255, 152, 0, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(255, 152, 0, 0.2);
+        font-weight: nb-theme(font-weight-normal);
+        color: #ffffff;
+
+        i {
+          color: #ffffff;
+          transition: all 300ms linear;
+        }
+      }
+
+      i {
+        color: #777777;
+      }
+    }
+  }
+
   nb-sidebar.menu-sidebar {
+
+    transition: all 300ms linear;
 
     /deep/ .main-container {
       position: fixed;
+      transition: all 300ms linear;
       margin-top: 1.5rem;
       box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)
+    }
+
+    /deep/ .menu-item {
+      .dashboard {
+        position: relative;
+        display: inline-block;
+    
+        &:after {
+            content: "dashboard";
+        }
+      }
+
+      .memory {
+        position: relative;
+        display: inline-block;
+    
+        &:after {
+            content: "memory";
+        }
+      }
     }
 
     /deep/ nb-sidebar-header {
@@ -92,9 +165,16 @@
     &.compacted {
       width: 3.5em !important;
 
-      /deep/ nb-sidebar-header {
-        padding-left: 0;
-        padding-right: 0;
+      /deep/ .menu-item {
+        a {
+          margin: 0.75em 0.5em;
+          padding: 0.4em 0.2em;
+          transition: padding 500ms linear;
+
+          &:before {
+            display: none;
+          }
+        }
       }
 
       .main-btn {

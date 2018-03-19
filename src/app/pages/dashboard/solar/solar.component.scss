@@ -70,7 +70,6 @@
         font-weight: nb-theme(font-weight-normal);
         font-size: 80%;
         line-height: 1;
-        margin-left: -0.7rem;
       }
     }
   }
@@ -89,10 +88,52 @@
     }
   }
 
+  @include media-breakpoint-down(sm) {
+    .info {
+        
+      h3 {
+        font-size: 3rem;
+        font-weight: nb-theme(font-weight-normal);
+        font-family: nb-theme(font-main);
+        margin: 0;
+  
+        small {
+          font-weight: nb-theme(font-weight-normal);
+          font-size: 80%;
+          line-height: 1;
+        }
+      }
+    }
+  }
+
   @include media-breakpoint-down(xs) {
     nb-card-body {
       padding-left: 1rem;
       padding-right: 1rem;
+    }
+
+    nb-card-header.icon {
+      margin: -1em 0.75em 0;
+      padding: 1.8rem 0;
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+
+    .info {
+        
+      h3 {
+        font-size: 2.5rem;
+        font-weight: nb-theme(font-weight-normal);
+        font-family: nb-theme(font-main);
+        margin: 0;
+  
+        small {
+          font-weight: nb-theme(font-weight-normal);
+          font-size: 80%;
+          line-height: 1;
+          margin-left: -0.7rem;
+        }
+      }
     }
   }
 }

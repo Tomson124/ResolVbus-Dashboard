@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit, Inject } from '@angular/core';
+import { TempsService, Temps } from '../temps.service';
+import { tap } from 'rxjs/operators';
 
 const config = require('./../../../../../config');
 
@@ -8,8 +9,36 @@ const config = require('./../../../../../config');
   styleUrls: ['./solar.component.scss'],
   templateUrl: './solar.component.html',
 })
-export class SolarComponent implements AfterViewInit {
-  ngAfterViewInit(): void {
+export class SolarComponent implements OnInit {
+
+  temp: Temps;
+  showSolar: boolean;
+
+  constructor(private tempService: TempsService) {}
+
+  ngOnInit() {
+    this.showSolarTemp();
+    this.showSolar = this.setShow(this.temp.rawValue);
+    alert(this.showSolar)
+    //timeStamp = '14:00';
+  }
+
+  showSolarTemp() {
+    this.tempService.getTemps('tempSolar')
+      .subscribe((data) => this.temp = data);
+  }
+
+  setShow(value: number) {
+    if (value === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
+/* export class SolarComponent implements OnInit {
+  ngOnInit(): void {
 
     const elTemp1 = document.getElementById('tempSolar');
     const elTime = document.getElementById('timeSolar');
@@ -35,6 +64,7 @@ export class SolarComponent implements AfterViewInit {
 
     setInterval(function() {
       logging();
-    }, config.loggingInterval + 1000);
+    }, config.loggingInterval + 500);
   }
 }
+*/
