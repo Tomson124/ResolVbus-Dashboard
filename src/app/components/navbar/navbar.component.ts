@@ -1,0 +1,19 @@
+import { appVersion } from './../../app.version';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
+})
+export class NavbarComponent implements OnInit {
+
+  title = 'VBus-Dashboard';
+  version = 'v' + appVersion;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
