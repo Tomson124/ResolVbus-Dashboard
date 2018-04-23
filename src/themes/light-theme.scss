@@ -1,9 +1,27 @@
+$sidebar-width: 250px;
+
+$red-400: #ef5350 !default;
+$red-600: #e53935 !default;
+
 body {
     background: #eeeeee;
 }
 
 .navbar {
-    background: #ffffff !important;
+    background: transparent !important;
+    box-shadow: none;
+    padding: .625rem 0;
+
+    .navbar-brand {
+        position: relative;
+        color: inherit;
+        height: 50px;
+        font-size: 1.125rem;
+        line-height: 30px;
+        padding: .625rem 0;
+        font-weight: 300;
+        margin-left: 1rem;
+    }
 }
 
 .navbar-right {
@@ -15,6 +33,16 @@ body {
 
     .btn {
         display: inline-block;
+    }
+}
+
+.main-content {
+    position: relative;
+    float: right;
+    width: calc(100% - #{$sidebar-width});
+
+    .main-panel {
+        padding: 30px 15px;
     }
 }
 
@@ -31,11 +59,39 @@ body {
     z-index: 1;
     box-shadow: 0 10px 30px -12px rgba(0,0,0,.42),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
 
+    .logo {
+        padding: 15px 0;
+        margin: 0;
+        display: block;
+        position: relative;
+        z-index: 4;
+
+        :after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 15px;
+            height: 1px;
+            width: calc(100% - 30px);
+            background-color: rgba(180,180,180,.3);
+        }
+
+        h3 {
+            text-align: center;
+            margin: 0;
+             
+            span {
+                font-size: 2.2rem;
+                color: #ef5350;
+            }
+        }
+    }
+
     .sidebar-wrapper {
         position: relative;
         height: calc(100vh - 75px);
         overflow: auto;
-        width: 260px;
+        width: $sidebar-width;
         z-index: 4;
 
         .nav {
@@ -73,6 +129,93 @@ body {
                 font-size: 14px;
                 float: right;
             }
+        }
+    }
+}
+
+.card {
+    border: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    color: #333;
+    background: #ffffff;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+
+    .card-category:not([class*="text-"]) {
+        color: #999999;
+    }
+    
+    .card-category {
+        margin-top: 10px;
+
+        .material-icons {
+            position: relative;
+            top: 8px;
+            line-height: 0;
+        }
+    }
+
+    .card-title {
+        margin-top: 0.625rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .card-header {
+        z-index: 3;
+
+        &.card-header-icon i {
+            font-size: 36px;
+            line-height: 56px;
+            width: 56px;
+            height: 56px;
+            text-align: center;
+          }
+
+        &.card-header-icon {
+            text-align: right;
+            
+            i {
+                font-size: 36px;
+                line-height: 56px;
+                width: 56px;
+                height: 56px;
+                text-align: center;
+            }
+
+            .card-title {
+                margin-top: 15px;
+                color: #3C4858;
+            }
+
+            h4 {
+                font-weight: 300;
+            }
+        }
+    }
+    .card-header-solar .card-icon,
+    .card-header-soalr .card-text,
+    .card-header-solar:not(.card-header-icon):not(.card-header-text),
+    &.bg-solar,
+    &.card-rotate.bg-solar .front,
+    &.card-rotate.bg-solar .back {
+        background: linear-gradient(60deg, $red-400, $red-600);
+    }
+    
+    [class*="card-header-"] {
+    margin: 0px 15px 0;
+    padding: 0;
+
+        .card-icon {
+            border-radius: 3px;
+            background-color: #999;
+            padding: 15px;
+            margin-top: -20px;
+            margin-right: 15px;
+            float: left;
         }
     }
 }
