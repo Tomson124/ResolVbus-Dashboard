@@ -3,15 +3,13 @@
     <h3><span>V</span>Bus</h3>
   </div>
   <div class="sidebar-wrapper">
-    <div class="nav-container">
-        <ul class="nav">
-          <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-            <a  [routerLink]="[menuItem.path]">
-              <i class="material-icons">{{menuItem.icon}}</i>
-              <p>{{menuItem.title}}</p>
-            </a>
-          </li>
-        </ul>
-    </div>
+    <ul class="nav">
+      <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+        <a class="nav-link" [routerLink]="[menuItem.path]">
+          <i class="material-icons">{{menuItem.icon}}</i>
+          <p>{{menuItem.title}}</p>
+        </a>
+      </li>
+    </ul>
   </div>
 </div>

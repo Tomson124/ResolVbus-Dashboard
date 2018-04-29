@@ -98,6 +98,8 @@ body {
             padding-left: 0;
             margin-bottom: 0;
             list-style: none;
+            margin-top: 20px;
+            display: block;
 
             a {
                 position: relative;
@@ -127,7 +129,10 @@ body {
                 margin: 0;
                 line-height: 30px;
                 font-size: 14px;
-                float: right;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;
             }
         }
     }
