@@ -1,24 +1,17 @@
-<div class="card">
+<div class="card card-solar">
   <div class="card-header card-header-solar card-header-icon">
     <div class="card-icon">
-      <i class="material-icons">content_copy</i>
+      <i class="material-icons">wb_sunny</i>
     </div>
-    <p class="card-category">Used Space</p>
-    <h3 class="card-title">49/50
-        <small>GB</small>
-    </h3>
+    <p class="card-category">Solarpanel</p>
+    <h2 class="card-title">{{tempSolar | number:'1.0-1'}}
+        <small>°C</small>
+    </h2>
   </div>
   <div class="card-footer">
-    <div class="stats">
-      <i class="material-icons text-danger">warning</i>
-      <a href="#pablo">Get More Space...</a>
+    <div class="stats text-time">
+      <i class="material-icons">access_time</i>
+      <p>{{timestamp}} Uhr</p>
     </div>
-  </div>
-  <div class="card-body">
-    <!-- <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">{{tempSolar | number:'1.0-1'}}</p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a> -->
   </div>
 </div>

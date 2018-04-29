@@ -135,6 +135,7 @@ body {
 
 .card {
     border: 0;
+    font-size: 1.2rem;
     margin-bottom: 30px;
     margin-top: 30px;
     color: #333;
@@ -147,7 +148,8 @@ body {
     }
     
     .card-category {
-        margin-top: 10px;
+        margin: 0;
+        padding-top: 10px;
 
         .material-icons {
             position: relative;
@@ -157,15 +159,25 @@ body {
     }
 
     .card-title {
-        margin-top: 0.625rem;
+        margin: 0;
 
         &:last-child {
             margin-bottom: 0;
         }
     }
 
+    .card-footer {
+        padding: 10px 0 0;
+        margin: 0 15px 10px;
+        margin-top: 0px;
+        border-radius: 0;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .card-header {
         z-index: 3;
+        border-bottom: none;
 
         &.card-header-icon i {
             font-size: 36px;
@@ -173,7 +185,7 @@ body {
             width: 56px;
             height: 56px;
             text-align: center;
-          }
+        }
 
         &.card-header-icon {
             text-align: right;
@@ -184,11 +196,12 @@ body {
                 width: 56px;
                 height: 56px;
                 text-align: center;
+                color: #ffffff;
             }
 
             .card-title {
-                margin-top: 15px;
                 color: #3C4858;
+                font-size: 2.2rem;
             }
 
             h4 {
@@ -216,6 +229,34 @@ body {
             margin-top: -20px;
             margin-right: 15px;
             float: left;
+        }
+    }
+}
+
+.card-solar {
+    .card-header {
+            & + .card-footer{
+            border-top: 1px solid #eee;
+            margin-top: 14px;
+        }
+    }
+
+    .card-footer {
+        .stats {
+            .material-icons {
+                position: relative;
+                top: 5px;
+                margin-left: 3px;
+            }
+        }
+
+        .text-time {
+            color: #999999;
+            
+            p {
+                margin: 0;
+                display: inline-block;
+            }
         }
     }
 }
