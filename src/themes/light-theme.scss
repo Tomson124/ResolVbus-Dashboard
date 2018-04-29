@@ -1,6 +1,21 @@
+@mixin set-background-color-button($color) {
+
+    li.active > a{
+        background-color: $color;
+        @include shadow-big-color($color);
+    }
+}
+
+@mixin shadow-big-color($color) {
+    // new box shadow optimized for Tablets and Phones
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, .14),
+                0 7px 10px -5px rgba($color, 0.4)
+}
+
 $sidebar-width: 250px;
 
 $red-400: #ef5350 !default;
+$red-500: #f44336 !default;
 $red-600: #e53935 !default;
 
 body {
@@ -134,7 +149,18 @@ body {
                 height: auto;
                 white-space: nowrap;
             }
+
+            li {
+                &.active > a,
+                &.active > a i {
+                    color: #ffffff;
+                }
+            }
         }
+    }
+
+    &[data-color="danger"] {
+        @include set-background-color-button($red-500);
     }
 }
 
