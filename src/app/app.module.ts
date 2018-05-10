@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app.routing';
 
@@ -13,6 +13,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SolarComponent } from './pages/dashboard/solar/solar.component';
 import { TempsService } from './temps.service';
 import { RouterModule } from '@angular/router';
+import { WaterComponent } from './pages/dashboard/water/water.component';
+import { registerLocaleData } from '@angular/common';
+
+import localeDE from '@angular/common/locales/de';
+
+registerLocaleData(localeDE);
 
 
 @NgModule({
@@ -22,7 +28,8 @@ import { RouterModule } from '@angular/router';
     DashboardComponent,
     NavbarComponent,
     SidebarComponent,
-    SolarComponent
+    SolarComponent,
+    WaterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     AppRoutingModule
   ],
-  providers: [TempsService],
+  providers: [TempsService,
+  {provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
