@@ -1,34 +1,63 @@
-<div class="card card-chart">
-  <div class="card-header">
-    <h5 class="card-category">Global Sales</h5>
-    <h4 class="card-title">Solar Temperatur</h4>
-    <div ngbDropdown>
-      <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
-        <i class="now-ui-icons loader_gear"></i>
-      </button>
-      <div ngbDropdownMenu class="dropdown-menu-right">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-        <a class="dropdown-item text-danger" href="#">Remove Data</a>
+<div *ngIf="solar; else water">
+  <div class="card card-chart">
+    <div class="card-header">
+      <h4 class="card-title">Solar Temperatur</h4>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
+          <i class="now-ui-icons loader_gear"></i>
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu-right">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card-body">
-    <div *ngIf="solar; else water">
+    <div class="card-body">
       <div class="temp">
-        <h1>125 °C</h1>
+          <div class="blockSolar">
+              <i class="fas fa-sun"></i>
+              <h1>{{tempSolar | number:'1.0-1'}} °C</h1>
+            </div>
       </div>
     </div>
-    <ng-template #water>
-      <div class="temp">
-          <h1>45 °C</h1>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
       </div>
-    </ng-template>
-  </div>
-  <div class="card-footer">
-    <div class="stats">
-      <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
     </div>
   </div>
 </div>
+
+<ng-template #water>
+  <div class="card card-chart">
+    <div class="card-header">
+      <h4 class="card-title">Wasser Temperatur</h4>
+      <div ngbDropdown>
+        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
+          <i class="now-ui-icons loader_gear"></i>
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu-right">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="temp">
+        <div class="blockWater">
+          <i class="fas fa-tint"></i>
+          <h1>{{tempWater | number:'1.0-1'}} °C</h1>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
+      </div>
+    </div>
+  </div>
+</ng-template>

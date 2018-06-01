@@ -1,10 +1,43 @@
 .temp {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .blockSolar {
+        display: inline-block;
+
+        i {
+            color: #FF3636;  
+        }
+    }
+
+    .blockWater {
+        display: inline-block;
+        
+        i {
+            color: #2CA8FF;  
+        }
+    }
+    
     h1 {
+        display: inline-block;
         text-align: center;
         margin: 0;
+    }
+
+    i {
+        font-size: 3.5rem;
+        padding: 0 1rem;
+        position: relative;
+        top: 3px;
     }
 }
 
 .card-footer {
     margin: 0;
+}
+
+.card-title {
+    margin-top: 5px !important;
 }
