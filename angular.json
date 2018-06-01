@@ -28,10 +28,12 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/assets/scss/now-ui-dashboard.scss",
-              "src/assets/demo/demo.css"
+              "./node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "./node_modules/ngx-toastr/toastr.css",
+              "./src/assets/scss/now-ui-dashboard.scss",
+              "src/assets/demo/demo.css",
+              "./node_modules/@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss",
+              "./node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js"
@@ -84,7 +86,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
