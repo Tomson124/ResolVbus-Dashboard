@@ -21,7 +21,7 @@ export class TempsComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   showTemps() {
-    this.route.data.subscribe(( { temps }) => {
+    this.route.data.subscribe(({ temps }) => {
       this.temps = temps;
     });
     this.tempSolar = this.temps[this.solarNum].rawValue;

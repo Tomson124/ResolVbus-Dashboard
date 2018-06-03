@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardComponent } from './dashboard.component';
 import { TempsComponent } from './temps/temps.component';
 import { ChartsModule } from 'ng2-charts';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -16,7 +17,8 @@ describe('DashboardComponent', () => {
         ]),
         ChartsModule
       ],
-      declarations: [ DashboardComponent, TempsComponent ]
+      declarations: [ DashboardComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
