@@ -18,9 +18,6 @@ app.use(function(req, res, next) {
 const adapter = new FileSync('database/solar.json')
 const db = low(adapter)
 
-db.defaults({ posts: [], user: {}, count: 0 })
-  .write();
-
 db._.mixin({
   latest: function(array) {
     var long = array.length;
@@ -32,24 +29,6 @@ db._.mixin({
     // GET /posts/:id
     app.get('/latestTime/:temps', (req, res) => {
 
-      if(req.params.temps === 'tempSolar') {
-        db.read();
-        const temps = db.get('temps')
-          .latest()
-          .get('data')
-          .find({name: 'Temperature sensor 1'})
-          .value()
-          res.send(temps);
-      }
-      if (req.params.temps === 'tempWater') {
-        db.read();
-        const temps = db.get('temps')
-          .latest()
-          .get('data')
-          .find({name: 'Temperature sensor 2'})
-          .value()
-        res.send(temps);
-      }
       if (req.params.temps === 'temp') {
         db.read();
         const temp2 = db.get('temps')

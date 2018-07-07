@@ -109,18 +109,22 @@ var main = function() {
 
         _.forEach(packetFields, function(pf) {
 			if (pf.name === 'Temperature sensor 1' || pf.name === 'Temperature sensor 2') {
-				//dataChanged(packetId, pf.name, pf.rawValue);
                 if (update) {
 					if (latestId() !== packetId) {
 						db.get('temps')
-							.push({id: packetId, data:[]})
+							.push({id: packetId, time: timestamp, date: datestamp, data:[]})
 							.write();
 					}
+
+					db.get('temps')
+						.find({id: packetId})
+						.assign({time: timestamp, date: datestamp})
+						.write();
 
                     db.get('temps')
                         .find({id: packetId})
                         .get('data')
-                        .push({id: pf.id, time: timestamp, date: datestamp, name: pf.name, rawValue: pf.rawValue})
+                        .push({id: pf.id, name: pf.name, rawValue: pf.rawValue})
                         .write();
 					console.log('id' + pf.id)
 					dataChange = true;
