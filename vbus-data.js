@@ -15,19 +15,20 @@ const db = low(adapter);
 
 var spec = vbus.Specification.getDefaultSpecification();
 
-var packetId = 0;
+var packetId = 1;
 
 var Pusher = require('pusher');
 
 var update = false;
+var dataChange = false;
 
-var pusher = new Pusher({
+/*var pusher = new Pusher({
   appId: '556448',
   key: '8a6d04a328c3b05e85f2',
   secret: '555de261aa12f36db936',
   cluster: 'eu',
   encrypted: true
-});
+});*/
 
 var main = function() {
 	var ctx = {
@@ -36,21 +37,63 @@ var main = function() {
 		connection: null,
     };
     
-    var dataChanged = function(packetid, nameTemp, newTemp) {
-        const temp = db.get('temps')
-            .find({id: packetid})
-            .get('data')
-            .find({name: nameTemp})
-            .value();
-        
-        if (temp.rawValue === newTemp) {
-            console.log('false');
-            return false;
-        }
+    var dataChanged = function() {
+		var packetFields = spec.getPacketFieldsForHeaders(ctx.headerSet.getSortedHeaders());
+		var changed1 = false;
+		var changed2 = false;
 
-        console.log('true');
-        return true;
-    }
+		_.forEach(packetFields, function(pf) {
+			if (pf.name === 'Temperature sensor 1') {
+				const temp1 = db.get('temps')
+					.find({id: packetId - 1})
+					.get('data')
+					.find({name: pf.name})
+					.value();
+				if (temp1.rawValue !== pf.rawValue) {
+					changed1 = true;
+				}
+				else {
+					changed1 = false;
+				}
+			}
+			if (pf.name === 'Temperature sensor 2') {
+				const temp2 = db.get('temps')
+					.find({id: packetId - 1})
+					.get('data')
+					.find({name: pf.name})
+					.value();
+				if (temp2.rawValue !== pf.rawValue) {
+					changed2 = true;
+				}
+				else {
+					changed2 = false;
+				}
+			}
+		});
+
+		if (changed1 || changed2) {
+			console.log('true');
+			return update = true;
+		}
+		else {
+			console.log('false');
+			return update = false;
+		}
+	}
+
+	var latestId = function() {
+		var packet = db.get('temps')
+			.latest()
+			.value();
+		return packet.id;
+	}
+	
+	db._.mixin({
+		latest: function(array) {
+		  var long = array.length;
+		  return array[long - 1];
+		}
+	});
 
 	var generateJsonData = function() {
         var packetFields = spec.getPacketFieldsForHeaders(ctx.headerSet.getSortedHeaders());
@@ -63,36 +106,33 @@ var main = function() {
 
         db.defaults({ temps: []})
 			.write();
-			
-		db.get('temps')
-			.push({id: packetId, data:[]})
-			.write()
 
-        _.map(packetFields, function(pf) {
+        _.forEach(packetFields, function(pf) {
+			if (pf.name === 'Temperature sensor 1' || pf.name === 'Temperature sensor 2') {
+				//dataChanged(packetId, pf.name, pf.rawValue);
+                if (update) {
+					if (latestId() !== packetId) {
+						db.get('temps')
+							.push({id: packetId, data:[]})
+							.write();
+					}
 
-			if (pf.name === 'Temperature sensor 1') {
-                if (dataChanged(packetId, pf.name, pf.rawValue)) {
                     db.get('temps')
                         .find({id: packetId})
                         .get('data')
                         .push({id: pf.id, time: timestamp, date: datestamp, name: pf.name, rawValue: pf.rawValue})
-                        .write()
-                        console.log('id' + pf.id)
-                }
+                        .write();
+					console.log('id' + pf.id)
+					dataChange = true;
+						
+				}
             }
-            if (pf.name === 'Temperature sensor 2') {
-                if (dataChanged(packetId, pf.name, pf.rawValue)) {
-                    db.get('temps')
-                        .find({id: packetId})
-                        .get('data')
-                        .push({id: pf.id, time: timestamp, date: datestamp, name: pf.name, rawValue: pf.rawValue})
-                        .write()
-                        console.log('id' + pf.id)
-                }
-			}		
 		});
-
-		packetId++;
+		if (dataChange) {
+			packetId++;
+			dataChange = false;
+			console.log(packetId);
+		}		
 	};
 
 	return Q.fcall(function() {
@@ -116,8 +156,8 @@ var main = function() {
 		ctx.hsc.on('headerSet', function(headerSet) {
 			Q.fcall(function() {
 				console.log('HeaderSet complete');
-
-				var data = generateJsonData();
+				dataChanged();
+				generateJsonData();
 
 			}).done();
 		});
