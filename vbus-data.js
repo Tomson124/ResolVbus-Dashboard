@@ -22,13 +22,13 @@ var Pusher = require('pusher');
 var update = false;
 var dataChange = false;
 
-/*var pusher = new Pusher({
+var pusher = new Pusher({
   appId: '556448',
   key: '8a6d04a328c3b05e85f2',
   secret: '555de261aa12f36db936',
   cluster: 'eu',
   encrypted: true
-});*/
+});
 
 var main = function() {
 	var ctx = {
@@ -95,6 +95,12 @@ var main = function() {
 		}
 	});
 
+	var pushTrigger = function() {
+		pusher.trigger('vbus-channel', 'data-update-event', {
+			updated: true
+		});
+	}
+
 	var generateJsonData = function() {
         var packetFields = spec.getPacketFieldsForHeaders(ctx.headerSet.getSortedHeaders());
 		var packetLength = packetFields.length;
@@ -134,6 +140,7 @@ var main = function() {
 		});
 		if (dataChange) {
 			packetId++;
+			pushTrigger();
 			dataChange = false;
 			console.log(packetId);
 		}		
