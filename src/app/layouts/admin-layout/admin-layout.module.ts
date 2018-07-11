@@ -13,8 +13,6 @@ import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { TempsComponent } from '../../dashboard/temps/temps.component';
-import { TempsService } from '../../temps.service';
-import { TempResolver } from '../../temp-resolver/temp-resolver.resolver';
 
 @NgModule({
   imports: [

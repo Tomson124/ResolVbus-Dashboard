@@ -36,7 +36,8 @@
               "./node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/pusher-js/dist/web/pusher.min.js"
             ]
           },
           "configurations": {
