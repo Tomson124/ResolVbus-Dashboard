@@ -88,7 +88,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js"
+              "node_modules/chart.js/dist/Chart.min.js",
+              "node_modules/pusher-js/dist/web/pusher.min.js"
             ],
             "assets": [
               "src/favicon.ico",

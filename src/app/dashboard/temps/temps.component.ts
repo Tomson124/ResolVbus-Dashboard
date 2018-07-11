@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { TempsService, Temps } from '../../temps.service';
+import { TempsService } from '../../temps.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,6 +31,7 @@ export class TempsComponent implements OnInit, AfterViewInit {
         this.error = true;
         this.tempSolar = '---';
         this.tempWater = '---';
+        // TODO: Letzter Versuch Text für Wertanfrage
       }
     });
   }
