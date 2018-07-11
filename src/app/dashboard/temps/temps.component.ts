@@ -12,12 +12,11 @@ export class TempsComponent implements OnInit, AfterViewInit {
   @Input() solar: boolean;
   solarNum = 0;
   waterNum = 1;
+  timestampNum = 2;
   tempSolar: any;
   tempWater: any;
   timestamp: string;
   error = false;
-
-  temps: Temps;
 
   constructor(private route: ActivatedRoute, private tempService: TempsService) { }
 
@@ -27,6 +26,7 @@ export class TempsComponent implements OnInit, AfterViewInit {
         this.error = false;
         this.tempSolar = temps[this.solarNum].rawValue;
         this.tempWater = temps[this.waterNum].rawValue;
+        this.timestamp = temps[this.timestampNum];
       } else {
         this.error = true;
         this.tempSolar = '---';

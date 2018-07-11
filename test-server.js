@@ -41,7 +41,15 @@ db._.mixin({
           .get('data')
           .find({name: 'Temperature sensor 1'})
           .value()
-        const test = [temp1, temp2]
+        const time = db.get('temps')
+          .latest()
+          .get('time')
+          .value()
+        const date = db.get('temps')
+          .latest()
+          .get('date')
+          .value()
+        const test = [temp1, temp2, time, date]
         res.send(test);
       }
 
