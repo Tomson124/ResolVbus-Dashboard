@@ -17,8 +17,14 @@
     <div class="card-body">
       <div class="temp">
           <div class="blockSolar">
-              <i class="fas fa-sun"></i>
-              <h1>{{tempSolar | number:'1.0-1'}} °C</h1>
+              <div *ngIf="error; else normal">
+                <i class="fas fa-sun"></i>
+                <h1>{{tempSolar}} °C</h1>
+              </div>
+              <ng-template #normal>
+                <i class="fas fa-sun"></i>
+                <h1>{{tempSolar | number:'1.0-1'}} °C</h1>
+              </ng-template>
             </div>
       </div>
     </div>
@@ -49,8 +55,14 @@
     <div class="card-body">
       <div class="temp">
         <div class="blockWater">
-          <i class="fas fa-tint"></i>
-          <h1>{{tempWater | number:'1.0-1'}} °C</h1>
+          <div *ngIf="error; else normal">
+              <i class="fas fa-tint"></i>
+              <h1>{{tempWater}} °C</h1>
+            </div>
+            <ng-template #normal>
+              <i class="fas fa-tint"></i>
+              <h1>{{tempWater | number:'1.0-1'}} °C</h1>
+            </ng-template>
         </div>
       </div>
     </div>

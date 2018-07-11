@@ -12,9 +12,10 @@ export class TempsComponent implements OnInit, AfterViewInit {
   @Input() solar: boolean;
   solarNum = 0;
   waterNum = 1;
-  tempSolar: number;
-  tempWater: number;
+  tempSolar: any;
+  tempWater: any;
   timestamp: string;
+  error = false;
 
   temps: Temps;
 
@@ -22,13 +23,21 @@ export class TempsComponent implements OnInit, AfterViewInit {
 
   showInitTemps() {
     this.route.data.subscribe(({ temps }) => {
-      this.tempSolar = temps[this.solarNum].rawValue;
-      this.tempWater = temps[this.waterNum].rawValue;
+      if (temps !== undefined) {
+        this.error = false;
+        this.tempSolar = temps[this.solarNum].rawValue;
+        this.tempWater = temps[this.waterNum].rawValue;
+      } else {
+        this.error = true;
+        this.tempSolar = '---';
+        this.tempWater = '---';
+      }
     });
   }
 
   updateTemps() {
     this.tempService.channel.bind('data-update-event', data => {
+      this.error = false;
       this.tempSolar = data[this.solarNum].rawValue;
       this.tempWater = data[this.waterNum].rawValue;
     });
