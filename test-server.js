@@ -25,47 +25,46 @@ db._.mixin({
   }
 });
 
-    // Routes
-    // GET /posts/:id
-    app.get('/latestTime/:temps', (req, res) => {
+// Routes
+// GET /posts/:id
+app.get('/latestTime/:temps', (req, res) => {
+  if (req.params.temps === 'temp') {
+    db.read();
+    const temp2 = db.get('temps')
+      .latest()
+      .get('data')
+      .find({name: 'Temperature sensor 2'})
+      .value()
+    const temp1 = db.get('temps')
+      .latest()
+      .get('data')
+      .find({name: 'Temperature sensor 1'})
+      .value()
+    const time = db.get('temps')
+      .latest()
+      .get('time')
+      .value()
+    const date = db.get('temps')
+      .latest()
+      .get('date')
+      .value()
+    const test = [temp1, temp2, time, date]
+    res.send(test);
+  } else {
+    res.status(404)
+      .send('Cannot GET /latestTime/' + req.params.temps);
+  }
+})
 
-      if (req.params.temps === 'temp') {
-        db.read();
-        const temp2 = db.get('temps')
-          .latest()
-          .get('data')
-          .find({name: 'Temperature sensor 2'})
-          .value()
-        const temp1 = db.get('temps')
-          .latest()
-          .get('data')
-          .find({name: 'Temperature sensor 1'})
-          .value()
-        const time = db.get('temps')
-          .latest()
-          .get('time')
-          .value()
-        const date = db.get('temps')
-          .latest()
-          .get('date')
-          .value()
-        const test = [temp1, temp2, time, date]
-        res.send(test);
-      }
-
-      //res.send(test)
-      //console.log(req.params.temps + ' - ' + test);
-    })
-
-    // POST /posts
-    app.post('/posts', (req, res) => {
-      db.get('temps')
-        .push(req.body)
-        .last()
-        .assign({ id: Date.now().toString() })
-        .write()
-      res.send(post)
-    })
+// POST /posts
+app.post('/posts', (req, res) => {
+  db.get('temps')
+    .push(req.body)
+    .last()
+    .assign({ id: Date.now().toString() })
+    .write()
+  res.send(post)
+})
 
 var server = app.listen(3000);
   console.log('Example app listening at port 3000');
