@@ -36,6 +36,14 @@
 
 .card-footer {
     margin: 0;
+
+    .stats {
+        font-size: 0.9rem;
+
+        i {
+            top: 3px;
+        }
+    }
 }
 
 .card-title {

@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-temps',
   templateUrl: './temps.component.html',
-  styleUrls: ['./temps.component.scss']
+  styleUrls: ['./temps.component.scss'],
+  animations: []
 })
 export class TempsComponent implements OnInit, AfterViewInit {
 
@@ -41,6 +42,7 @@ export class TempsComponent implements OnInit, AfterViewInit {
       this.error = false;
       this.tempSolar = data[this.solarNum].rawValue;
       this.tempWater = data[this.waterNum].rawValue;
+      this.timestamp = data[this.timestampNum];
     });
   }
 

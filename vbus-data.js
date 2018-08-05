@@ -72,11 +72,9 @@ var main = function() {
 		});
 
 		if (changed1 || changed2) {
-			console.log('true');
 			return update = true;
 		}
 		else {
-			console.log('false');
 			return update = false;
 		}
 	}
@@ -96,8 +94,29 @@ var main = function() {
 	});
 
 	var pushTrigger = function() {
+		db.read();
+		const temp2 = db.get('temps')
+			.latest()
+			.get('data')
+			.find({name: 'Temperature sensor 2'})
+			.value()
+		const temp1 = db.get('temps')
+			.latest()
+			.get('data')
+			.find({name: 'Temperature sensor 1'})
+			.value()
+		const time = db.get('temps')
+			.latest()
+			.get('time')
+			.value()
+		const date = db.get('temps')
+			.latest()
+			.get('date')
+			.value()
+		const test = [temp1, temp2, time, date]
+
 		pusher.trigger('vbus-channel', 'data-update-event', {
-			updated: true
+			"message": test
 		});
 	}
 
@@ -132,7 +151,6 @@ var main = function() {
                         .get('data')
                         .push({id: pf.id, name: pf.name, rawValue: pf.rawValue})
                         .write();
-					console.log('id' + pf.id)
 					dataChange = true;
 						
 				}
@@ -142,7 +160,6 @@ var main = function() {
 			packetId++;
 			pushTrigger();
 			dataChange = false;
-			console.log(packetId);
 		}		
 	};
 
