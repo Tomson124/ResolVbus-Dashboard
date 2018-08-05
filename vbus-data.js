@@ -115,9 +115,7 @@ var main = function() {
 			.value()
 		const test = [temp1, temp2, time, date]
 
-		pusher.trigger('vbus-channel', 'data-update-event', {
-			"message": test
-		});
+		pusher.trigger('vbus-channel', 'data-update-event', test);
 	}
 
 	var generateJsonData = function() {
