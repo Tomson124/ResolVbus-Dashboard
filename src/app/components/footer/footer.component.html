@@ -1,24 +1,35 @@
 
 <footer class="footer">
   <div class="container-fluid">
-    <nav>
-      <ul>
-        <li>
-          <a href="https://github.com/Tomson124/ResolVbus-Dashboard">
-            Github
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/Tomson124">
-            Twitter
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="copyright">
-      &copy;
-      {{test | date: 'yyyy'}}, Maintained by
-      <a href="https://github.com/Tomson124" target="_blank">Tomson124</a>.
+    <div class="row">
+      <div class="col">
+        <nav>
+          <ul>
+            <li>
+              <a href="https://github.com/Tomson124/ResolVbus-Dashboard">
+                Github
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/Tomson124">
+                Twitter
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="col">
+        <div class="version">
+          <a href="#" target="_blank">v{{version_number}}</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="copyright">
+          &copy;
+          {{test | date: 'yyyy'}}, Maintained by
+          <a href="https://github.com/Tomson124" target="_blank">Tomson124</a>.
+        </div>
+      </div>
     </div>
   </div>
 </footer>
