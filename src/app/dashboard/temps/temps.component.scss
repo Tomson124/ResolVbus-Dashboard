@@ -1,3 +1,12 @@
+.card-main::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  height: 1px;
+  width: calc(100% - 30px);
+  background-color: rgba(154, 154, 154, 0.5);
+}
+
 .temp {
 
     display: flex;
@@ -8,18 +17,18 @@
         display: inline-block;
 
         i {
-            color: #FF3636;  
+            color: #FF3636;
         }
     }
 
     .blockWater {
         display: inline-block;
-        
+
         i {
-            color: #2CA8FF;  
+            color: #2CA8FF;
         }
     }
-    
+
     h1 {
         display: inline-block;
         text-align: center;
@@ -48,4 +57,28 @@
 
 .card-title {
     margin-top: 5px !important;
+}
+
+.card-addition {
+
+  .min-max {
+    padding: 0.75rem;
+  }
+
+  .day {
+    h2 {
+      font-size: 1.5rem;
+      line-height: 2.65rem;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin: 0;
+
+    span {
+      font-size: 1.25rem;
+      padding: 0.5rem;
+    }
+  }
 }

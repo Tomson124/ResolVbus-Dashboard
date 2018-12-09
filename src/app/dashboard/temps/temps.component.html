@@ -1,36 +1,42 @@
 <div *ngIf="solar; else water">
   <div class="card card-chart">
-    <div class="card-header">
-      <h4 class="card-title">Solar Temperatur</h4>
-      <div ngbDropdown>
-        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
-          <i class="now-ui-icons loader_gear"></i>
-        </button>
-        <div ngbDropdownMenu class="dropdown-menu-right">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+    <div class="card-main">
+      <div class="card-header">
+        <h4 class="card-title">Solar Temperatur</h4>
+      </div>
+      <div class="card-body">
+        <div class="temp">
+            <div class="blockSolar">
+                <div *ngIf="error; else normal">
+                  <i class="fas fa-sun"></i>
+                  <h1>{{tempSolar}} °C</h1>
+                </div>
+                <ng-template #normal>
+                  <i class="fas fa-sun"></i>
+                  <h1>{{tempSolar | number:'1.0-1'}} °C</h1>
+                </ng-template>
+              </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="stats">
+          <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
         </div>
       </div>
     </div>
-    <div class="card-body">
-      <div class="temp">
-          <div class="blockSolar">
-              <div *ngIf="error; else normal">
-                <i class="fas fa-sun"></i>
-                <h1>{{tempSolar}} °C</h1>
-              </div>
-              <ng-template #normal>
-                <i class="fas fa-sun"></i>
-                <h1>{{tempSolar | number:'1.0-1'}} °C</h1>
-              </ng-template>
-            </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="stats">
-        <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
+    <div class="card-addition">
+      <div class="min-max">
+        <div class="row">
+          <div class="col-md-2 day">
+            <h2>Tag</h2>
+          </div>
+          <div class="col-md">
+            <h2><span>Max</span>{{tempSolar | number:'1.0-1'}} °C</h2>
+          </div>
+          <div class="col-md">
+            <h2><span>Min</span>{{tempSolar | number:'1.0-1'}} °C</h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,37 +44,43 @@
 
 <ng-template #water>
   <div class="card card-chart">
-    <div class="card-header">
-      <h4 class="card-title">Wasser Temperatur</h4>
-      <div ngbDropdown>
-        <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" ngbDropdownToggle>
-          <i class="now-ui-icons loader_gear"></i>
-        </button>
-        <div ngbDropdownMenu class="dropdown-menu-right">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <a class="dropdown-item text-danger" href="#">Remove Data</a>
+    <div class="card-main">
+      <div class="card-header">
+        <h4 class="card-title">Wasser Temperatur</h4>
+      </div>
+      <div class="card-body">
+        <div class="temp">
+          <div class="blockWater">
+            <div *ngIf="error; else normal">
+                <i class="fas fa-tint"></i>
+                <h1>{{tempWater}} °C</h1>
+              </div>
+              <ng-template #normal>
+                <i class="fas fa-tint"></i>
+                <h1>{{tempWater | number:'1.0-1'}} °C</h1>
+              </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="stats">
+          <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
         </div>
       </div>
     </div>
-    <div class="card-body">
-      <div class="temp">
-        <div class="blockWater">
-          <div *ngIf="error; else normal">
-              <i class="fas fa-tint"></i>
-              <h1>{{tempWater}} °C</h1>
-            </div>
-            <ng-template #normal>
-              <i class="fas fa-tint"></i>
-              <h1>{{tempWater | number:'1.0-1'}} °C</h1>
-            </ng-template>
+    <div class="card-addition">
+      <div class="min-max">
+        <div class="row">
+          <div class="col-md-2 day">
+            <h2>Tag</h2>
+          </div>
+          <div class="col-md">
+            <h2><span>Max</span>{{tempWater | number:'1.0-1'}} °C</h2>
+          </div>
+          <div class="col-md">
+            <h2><span>Min</span>{{tempWater | number:'1.0-1'}} °C</h2>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="stats">
-        <i class="now-ui-icons arrows-1_refresh-69"></i> Zuletzt aktualisiert um <strong>{{ timestamp }}</strong>
       </div>
     </div>
   </div>
