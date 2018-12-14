@@ -33,6 +33,11 @@
         display: inline-block;
         text-align: center;
         margin: 0;
+
+        span {
+          font-size: 2.5rem;
+          padding: 0 0.5rem;
+        }
     }
 
     i {
@@ -56,7 +61,11 @@
 }
 
 .card-title {
-    margin-top: 5px !important;
+    margin-top: 0 !important;
+}
+
+.temps {
+  text-align: center;
 }
 
 .card-addition {
@@ -72,6 +81,19 @@
     }
   }
 
+  @media only screen and (max-width: 412px) {
+    .day {
+      h2 {
+        font-size: 1.5rem;
+        line-height: initial;
+      }
+    }
+
+    .bottom-spacer {
+      margin-bottom: 0.5rem;
+    }
+  }
+
   h2 {
     text-align: center;
     margin: 0;
@@ -79,6 +101,11 @@
     span {
       font-size: 1.25rem;
       padding: 0.5rem;
+    }
+
+    .degree {
+      font-size: 1.75rem;
+      padding: 0 0.5rem;
     }
   }
 }
